@@ -1,0 +1,6 @@
+﻿services:
+  sampleexercise:
+    image: sampleexercise
+    build:
+      context: .
+      dockerfile: SampleExercise/Dockerfile
