@@ -30,3 +30,4 @@ C:\Users\hassan\RiderProjects\SampleExercise\SampleExercise\obj\Debug\net8.0\ref
 C:\Users\hassan\RiderProjects\SampleExercise\SampleExercise\obj\Debug\net8.0\SampleExercise.pdb
 C:\Users\hassan\RiderProjects\SampleExercise\SampleExercise\obj\Debug\net8.0\SampleExercise.genruntimeconfig.cache
 C:\Users\hassan\RiderProjects\SampleExercise\SampleExercise\obj\Debug\net8.0\ref\SampleExercise.dll
+C:\Users\hassan\RiderProjects\SampleExercise\SampleExercise\obj\Debug\net8.0\SampleExercise.sourcelink.json

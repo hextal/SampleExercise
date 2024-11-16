@@ -4,3 +4,9 @@
     build:
       context: .
       dockerfile: SampleExercise/Dockerfile
+
+  sampleexerciserepository:
+    image: sampleexerciserepository
+    build:
+      context: .
+      dockerfile: SampleExerciseRepository/Dockerfile
