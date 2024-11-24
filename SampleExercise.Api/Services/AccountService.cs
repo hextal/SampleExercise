@@ -1,9 +1,6 @@
 using Models.Dto;
 using DataRepository.Interfaces;
 using SampleExercise.Interfaces;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SampleExercise.Services
 {
@@ -11,9 +8,12 @@ namespace SampleExercise.Services
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly ICurrentAccountRepository _currentAccountRepository;
+        private readonly ILogger<AccountService> _logger;
 
-        public AccountService(ICustomerRepository customerRepository, ICurrentAccountRepository currentAccountRepository)
+
+        public AccountService(ICustomerRepository customerRepository, ICurrentAccountRepository currentAccountRepository, ILogger<AccountService> logger)
         {
+            _logger = logger;
             _customerRepository = customerRepository;
             _currentAccountRepository = currentAccountRepository;
         }
@@ -23,6 +23,7 @@ namespace SampleExercise.Services
             var customer = await _customerRepository.GetCustomerById(customerId);
             if (customer == null)
             {
+                _logger.LogWarning("Customer not found with ID: {CustomerId}", customerId);
                 throw new Exception("Customer not found");
             }
 
@@ -44,18 +45,14 @@ namespace SampleExercise.Services
                 return null;
             }
 
-            if (customer.BankAccounts != null && customer.BankAccounts.Any())
-            {
-                var accountId = customer.BankAccounts.First();
-                var account = await _currentAccountRepository.GetAccount(accountId);
-                if (account != null && account.Transactions != null)
-                {
-                    account.Transactions = account.Transactions.OrderByDescending(t => t.TransactionDate).Take(3).ToList();
-                    return account;
-                }
-            }
+            if (customer.BankAccounts.Count == 0) return null;
+            var accountId = customer.BankAccounts.First();
+            var account = await _currentAccountRepository.GetAccount(accountId);
+            if (account?.Transactions == null) return null;
+            _logger.LogInformation("Retrieved account details for Account ID: {AccountId}", account.AccountId);
+            account.Transactions = account.Transactions.OrderByDescending(t => t.TransactionDate).Take(3).ToList();
+            return account;
 
-            return null;
         }
     }
 }

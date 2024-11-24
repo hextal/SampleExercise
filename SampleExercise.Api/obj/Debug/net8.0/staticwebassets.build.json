@@ -1,23 +1,11 @@
 {
   "Version": 1,
-  "Hash": "lt8AqdbRZippKhmE6FIZTRohsNuCseWB/u1JDFZw5Qs=",
+  "Hash": "YQEOJNI8F3EPf7/nY3pB3NT/9lIF+7QmeZAjpotsggE=",
   "Source": "SampleExercise.Api",
   "BasePath": "_content/SampleExercise.Api",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [
-    {
-      "Identity": "C:\\Users\\hassan\\RiderProjects\\SampleExercise\\DataRepository\\DataRepository.csproj",
-      "Version": 2,
-      "Source": "DataRepository",
-      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
-      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
-    }
-  ],
+  "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
   "Assets": []
 }

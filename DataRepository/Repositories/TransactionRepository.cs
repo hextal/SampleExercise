@@ -1,16 +1,12 @@
 using DataRepository.Interfaces;
 using Models.Dto;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace DataRepository.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
         private static List<TransactionDto> _transactions = new List<TransactionDto>();
-        private static List<CurrentAccountDto> _accounts = new List<CurrentAccountDto>();
+        private static readonly List<CurrentAccountDto> _accounts = new List<CurrentAccountDto>();
 
         public Task<TransactionDto?> GetTransaction(Guid transactionId)
         {
@@ -28,7 +24,7 @@ namespace DataRepository.Repositories
                 throw new InvalidOperationException("Account not found.");
             }
 
-            account.Transactions.Add(transaction);
+            account.Transactions?.Add(transaction);
             _transactions.Add(transaction);
             
             account.Balance += transaction.TransactionType == "Deposit" ? transaction.Amount : -transaction.Amount;
@@ -64,7 +60,7 @@ namespace DataRepository.Repositories
             var account = _accounts.FirstOrDefault(a => a.AccountId == transaction.AccountId);
             if (account != null)
             {
-                account.Transactions.Remove(transaction);
+                account.Transactions?.Remove(transaction);
                 account.Balance -= transaction.TransactionType == "Deposit" ? transaction.Amount : -transaction.Amount;
             }
 
